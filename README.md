@@ -6,6 +6,23 @@
 <b>Fine-Tuning of LLM</b>
 </div>
 
+To our NER Fine-tuning model we got  output for below input as 
+```python
+input="she was suffering from Malaria and fits so to cure  she used amodiaquine and she has slightly fever and pain on hip"
+
+### For the above input our tuned model got output as
+
+Entity: Malaria, Label: DISEASE
+Entity: fits, Label: SYMPTOM
+Entity: amodiaquine, Label: DRUG
+Entity: fever, Label: SYMPTOM
+Entity: pain, Label: SYMPTOM
+Entity: hip, Label: BODY_PART
+```
+In the above example input it extract all medical entity terms and give names for it 
+
+Now Quick start a description on NER and Fine-Tuning and after Explanation of code
+
 **Named Entity Recognition (NER)** is a subtask of information extraction and natural language processing (NLP) that focuses on identifying and classifying named entities in text into predefined categories such as person names, organizations, locations, dates, quantities, monetary values, and other entities. NER is crucial for understanding unstructured data, as it transforms textual content into structured information, enabling downstream tasks like information retrieval, summarization, and question answering.
 
 
