@@ -117,3 +117,127 @@ In this repo we use current trending Named entity Recognition **Domain-Specific 
 - **Text Summarization**: Fine-tuning sequence-to-sequence models (e.g., T5) on domain-specific data to generate summaries for articles or reports.
 
 Fine-tuning makes it possible to tailor powerful pre-trained models for specific tasks efficiently, thereby leveraging the strengths of both general and task-specific learning.
+
+----
+
+
+# Steps Involved in Fine-Tuning
+
+This project utilizes the Google Generative AI SDK to analyze medical statements. It can provide insights into the accuracy and clarity of the statements related to medical conditions, treatments, and symptoms.
+
+
+## Installation
+
+To install the Google Generative AI SDK, run the following command:
+
+```bash
+pip install google-generativeai
+```
+
+## Usage
+
+Follow these steps to set up and use the Google Generative AI SDK for medical Named Entity Recognition :
+
+1. **Import the Required Library:**
+   This step imports the Google Generative AI library, which allows us to access the API and its functionalities.
+   ```python
+   import google.generativeai as genai
+   ```
+
+2. **Configure the API Key:**
+   Set your API key to authenticate your requests. Replace `"your_api_key_here"` with your actual API key.
+   
+   ```python
+   apikey = "your_api_key_here"
+   genai.configure(api_key=apikey)
+   ```
+
+3. **List Available Tuned Models:**
+   This step lists the available tuned models you can use for generating responses. It helps you identify which models are accessible.
+   
+   ```python
+   for i, m in zip(range(5), genai.list_tuned_models()):
+       print(m.name)
+   ```
+
+4. **Select a Base Model:**
+   Here, we select the first base model that supports the creation of tuned models. This model will serve as the foundation for our generative model.
+   
+   ```python
+   base_model = [
+       m for m in genai.list_models()
+       if "createTunedModel" in m.supported_generation_methods][0]
+   ```
+
+5. **Create a Generative Model Configuration:**
+   
+   This configuration sets parameters like temperature, top_p, and output token limits that control the generation behavior of the model.
+   
+   ```python
+   generation_config = {
+       "temperature": 0.2,  # Controls the randomness of the output
+       "top_p": 0.95,  # Controls diversity via nucleus sampling
+       "top_k": 64,  # Limits the number of highest probability tokens to consider
+       "max_output_tokens": 8192,  # Maximum number of tokens to generate in the response
+       "response_mime_type": "text/plain",  # Format of the output
+   }
+   ```
+
+6. **Initialize the Generative Model:**
+    
+   Create an instance of the generative model using your tuned model's name. This allows you to generate responses based on the model's training.
+   
+   <div align="center">
+     <b>In this step we use our own finetuned model which was tuned with own well written dataset</b>
+   </div>
+   ```python
+   model = genai.GenerativeModel(
+       model_name="tunedModels/your_tuned_model_name_here",  # Replace with your tuned model my model was (medical-jmf8sizpikmcfg)
+       generation_config=generation_config,
+   )
+   ```
+
+7. **Start a Chat Session with Some History:**
+    
+   Initialize a chat session by providing some context from previous interactions. This helps the model understand the ongoing conversation.
+   ```python
+   chat_session = model.start_chat(
+       history=[
+           {"role": "user", "parts": ["he was suffering from cancer"]},
+           {"role": "model", "parts": ["The statement is correct and understandable. ..."]},  # Add model response
+           {"role": "user", "parts": ["she used clobazam 10 mg for fits"]},
+           {"role": "model", "parts": ["The statement is potentially problematic. ..."]},  # Add model response
+       ]
+   )
+   ```
+
+8. **Send a Message for Analysis:**
+    
+   You can now send a new medical statement for analysis. The model will generate a response based on the input.
+   ```python
+   response = chat_session.send_message("she was suffering from Malaria and fits so to cure she used amodiaquine and she has slightly fever and pain on hip")
+   ```
+
+9. **Print the Response:**
+   Finally, print the model's response to see the analysis and insights it provides regarding the medical statement.
+   ```python
+   print(response.text)
+   ```
+
+### My output:
+
+For my model for above input I got output as:
+
+```
+Entity: Malaria, Label: DISEASE
+Entity: fits, Label: SYMPTOM
+Entity: amodiaquine, Label: DRUG
+Entity: fever, Label: SYMPTOM
+Entity: pain, Label: SYMPTOM
+Entity: hip, Label: BODY_PART
+```
+
+
+
+
+Feel free to adjust any part of the text to better fit your project's needs!
