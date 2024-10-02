@@ -207,11 +207,13 @@ Follow these steps to set up and use the Google Generative AI SDK for medical Na
    <div align="center">
      <b>In this step we use our own finetuned model which was tuned with own well written dataset</b>
    </div>
+   
    ```python
-   model = genai.GenerativeModel(
-       model_name="tunedModels/your_tuned_model_name_here",  # Replace with your tuned model my model was (medical-jmf8sizpikmcfg)
+   
+   model = genai.GenerativeModel(model_name="tunedModels/your_tuned_model_name_here",  # Replace with your tuned model my model was (medical-jmf8sizpikmcfg)
        generation_config=generation_config,
    )
+  
    ```
 
 7. **Start a Chat Session with Some History:**
