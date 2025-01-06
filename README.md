@@ -26,6 +26,7 @@ Now Quick start a description on NER and Fine-Tuning and after Explanation of co
 **Named Entity Recognition (NER)** is a subtask of information extraction and natural language processing (NLP) that focuses on identifying and classifying named entities in text into predefined categories such as person names, organizations, locations, dates, quantities, monetary values, and other entities. NER is crucial for understanding unstructured data, as it transforms textual content into structured information, enabling downstream tasks like information retrieval, summarization, and question answering.
 
 
+
 ### **History of Named Entity Recognition:**
 
 1. **Early Beginnings (1990s)**:
