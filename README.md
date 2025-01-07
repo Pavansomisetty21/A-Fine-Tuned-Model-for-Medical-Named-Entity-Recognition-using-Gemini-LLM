@@ -247,6 +247,8 @@ Follow these steps to set up and use the Google Generative AI SDK for medical Na
    print(response.text)
    ```
 
+
+
 ### My output:
 
 For my model for above input I got output as:
