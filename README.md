@@ -19,6 +19,8 @@ Entity: fever, Label: SYMPTOM
 Entity: pain, Label: SYMPTOM
 Entity: hip, Label: BODY_PART
 ```
+
+
 In the above example input it extract all medical entity terms and give names for it 
 
 Now Quick start a description on NER and Fine-Tuning and after Explanation of code
