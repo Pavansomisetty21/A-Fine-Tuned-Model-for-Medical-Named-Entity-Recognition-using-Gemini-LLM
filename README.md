@@ -54,6 +54,7 @@ Now Quick start a description on NER and Fine-Tuning and after Explanation of co
    - More recently, models such as **RoBERTa**, **GPT**, **T5**, and **Gemini** have also been employed for NER tasks, offering even greater flexibility in multi-task learning and domain adaptation.
 
 ### **Current Trends**:
+
 - **Multilingual NER**: With global applications of NLP, there is a growing focus on multilingual NER, leveraging models like **mBERT** and **XLM-R** that can recognize entities across multiple languages.
 - **Domain-Specific NER**: NER has been applied in specialized domains like biomedical NER (for extracting drug names, diseases) and legal NER (for identifying legal terms).
 - **Few-shot Learning and Zero-shot Learning**: Recent trends in machine learning are focusing on NER models that require less data or can adapt to new entity types with minimal or no training data.
